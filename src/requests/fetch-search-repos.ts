@@ -1,5 +1,5 @@
-import { Octokit } from "octokit";
 import queryString from "query-string";
+import { octokit } from "../libraries/octokit";
 
 export interface TFetchSearchReposFnProps {
   search: string;
@@ -125,10 +125,6 @@ export type TFetchSearchReposFn = (
   props: TFetchSearchReposFnProps
 ) => Promise<TFetchSearchReposFnResult>;
 export const fetchSearchRepos: TFetchSearchReposFn = async (props) => {
-  const octokit = new Octokit({
-    auth: "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",
-  });
-
   const query = queryString.stringify({
     q: props.search,
     page: props.page,
